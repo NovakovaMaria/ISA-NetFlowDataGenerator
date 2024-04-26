@@ -1,0 +1,35 @@
+.TH FLOW 1
+.SH NAME
+flow \- netflow exporter
+.SH SYNOPSIS
+.B flow
+[\fB\-f\fR \fIfile\fR]
+[\fB\-c\fR \fIneflow_collector\fR\fI[:port]\fR]
+[\fB\-a\fR \fIactive_timer\fR]
+[\fB\-i\fR \fIseconds\fR]
+[\fB\-m\fR \fIcount\fR]
+.SH DESCRIPTION
+.B flow
+exports Netflow packet (v5 version)
+.SH OPTIONS
+.TP
+.BR \-f " "\fIfile\fR
+Input data. Default STDIN.
+.TP
+.BR \-c " "\fIneflow_collector:port\fR
+IP adress or hostname of netflow collector. Optional port parameter.
+Default 127.0.0.1:2055
+.TP
+.BR \-a " "\fIactive_timer\fR
+Active time export flows to collector.
+Every \fIactive_timer\fR all flows that has been in cache for \fIactive_timer\fR seconds will be exported.
+Default 60 seconds.
+.TP
+.BR \-i " "\fIseconds\fR
+Inactive time export flows to collector.
+Every \fIinactive_timer\fR all flows that has not recieved another packet for \fIinactive_timer\fR seconds will be exported.
+Default 10 seconds.
+.TP
+.BR \-c " "\fIcount\fR
+Size of NetFlow cache. If number of flows exceeds size of cache, oldest one will be exported.
+Default is 1024 flows.
